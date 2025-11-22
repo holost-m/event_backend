@@ -1,0 +1,188 @@
+# =============================
+#  Python / FastAPI Project
+# =============================
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+
+# Virtual environments
+.venv/
+venv/
+env/
+ENV/
+env.bak/
+*.env
+*.venv
+
+# Environment variables / secrets
+.env
+.env.*
+!.env.example
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# PyInstaller
+#  Usually these files are written by a python script from a template
+#  before PyInstaller builds the exe, so as to inject date/other info into it.
+*.manifest
+*.spec
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+.hypothesis/
+.pytest_cache/
+pytestdebug.log
+
+# Translations
+*.mo
+*.pot
+
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+db.sqlite3-journal
+
+# FastAPI / Uvicorn logs
+logs/
+*.log
+*.pid
+
+# PyCharm / VSCode / IDE stuff
+.idea/
+.vscode/
+*.iml
+*.sublime-project
+*.sublime-workspace
+
+# mypy / type checker
+.mypy_cache/
+.dmypy.json
+dmypy.json
+
+# Pyre type checker
+.pyre/
+
+# Pytype
+.pytype/
+
+# Cython debug symbols
+cython_debug/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Cache / temp files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+desktop.ini
+
+# Docker / Compose / Kubernetes
+docker-compose.override.yml
+docker-compose.local.yml
+*.pid
+*.log
+tmp/
+.docker/
+.dockerignore
+
+# Alembic / Migrations cache
+alembic/versions/__pycache__/
+migrations/__pycache__/
+migrations/versions/__pycache__/
+migrations/*.pyc
+
+# Static files (if built)
+staticfiles/
+static/
+media/
+uploads/
+
+# Reports / docs build
+site/
+_build/
+docs/_build/
+*.rst~
+*.orig
+*.rej
+
+# Test coverage reports
+coverage_html_report/
+
+# Local development data
+tmp_data/
+data/
+dev_data/
+
+# Node/npm (если используется для фронта)
+node_modules/
+npm-debug.log
+yarn-error.log
+package-lock.json
+.pnp.*
+.pnpm-store/
+.cache/
+.next/
+dist/
+build/
+
+# VSCode local configs
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# CI / pipelines temp
+ci/tmp/
+.gitlab-ci-local/
+.github/workflows/tmp/
+
+# Ignore compiled localization files
+locale/*/LC_MESSAGES/*.mo
+
+# Ignore generated swagger docs if not version-controlled
+openapi.json
+openapi.yaml
