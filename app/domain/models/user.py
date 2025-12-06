@@ -13,6 +13,7 @@ class User(BaseModel):
 
 
 class Permission(BaseModel):
+    id: UUID
     title: str = Field(max_length=32)
     description: str = Field(max_length=128)
 
@@ -20,4 +21,4 @@ class Permission(BaseModel):
 class Role(BaseModel):
     id_role: UUID
     name: str = Field(max_length=32)
-    permissions: list[str]
+    permissions: list[UUID]
