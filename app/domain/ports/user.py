@@ -1,11 +1,12 @@
 from abc import ABC, abstractmethod
+from app.domain.filters import UserFilter
 from app.domain.models.user import User, Permission, Role
 from uuid import UUID
 
 
 class UserPort(ABC):
     @abstractmethod
-    def create(self, user: User) -> int:
+    def create(self, user: User) -> bool:
         """Создать пользователя"""
         ...
 
@@ -15,7 +16,12 @@ class UserPort(ABC):
         ...
 
     @abstractmethod
-    def update(self, tg_id: int, user: User) -> bool:
+    def get_by_filter(self, _filter: UserFilter) -> tuple[User]:
+        """Получить пользователей по фильтру"""
+        ...
+
+    @abstractmethod
+    def update(self, user: User) -> bool:
         """Обновить пользователя по его id в телеграмме"""
         ...
 
@@ -24,10 +30,15 @@ class UserPort(ABC):
         """Удалить пользователя по его id в телеграмме"""
         ...
 
+    @abstractmethod
+    def bulk_delete(self, _filter: UserFilter) -> bool:
+        """Удалить пользователей по фильтру"""
+        ...
+
 
 class PermissionPort(ABC):
     @abstractmethod
-    def create(self, permission: Permission) -> UUID:
+    def create(self, permission: Permission) -> bool:
         """Создать разрешение"""
         ...
 
@@ -37,7 +48,7 @@ class PermissionPort(ABC):
         ...
 
     @abstractmethod
-    def update(self, _id: UUID, permission: Permission) -> bool:
+    def update(self, permission: Permission) -> bool:
         """Обновить разрешение по id"""
         ...
 
@@ -49,7 +60,7 @@ class PermissionPort(ABC):
 
 class RolePort(ABC):
     @abstractmethod
-    def create(self, role: Role) -> UUID:
+    def create(self, role: Role) -> bool:
         """Создать роль"""
         ...
 
@@ -59,7 +70,7 @@ class RolePort(ABC):
         ...
 
     @abstractmethod
-    def update(self, _id: UUID, role: Role) -> bool:
+    def update(self, role: Role) -> bool:
         """Обновить роль по id"""
         ...
 

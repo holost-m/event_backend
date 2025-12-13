@@ -1,11 +1,13 @@
 from uuid import UUID
 from abc import ABC, abstractmethod
+from app.domain.filters import EventFilter
 from app.domain.models.event import Event, EventCategory, Subscription
+from app.domain.models.user import User
 
 
 class EventPort(ABC):
     @abstractmethod
-    def create(self, event: Event) -> UUID:
+    def create(self, event: Event) -> bool:
         """Создать новое событие из модели"""
         ...
 
@@ -15,7 +17,12 @@ class EventPort(ABC):
         ...
 
     @abstractmethod
-    def update(self, _id: UUID, event: Event) -> bool:
+    def get_by_filter(self, _filter: EventFilter) -> tuple[Event]:
+        """Получить события по фильтру"""
+        ...
+
+    @abstractmethod
+    def update(self, event: Event) -> bool:
         """Обновить событие по его ID"""
         ...
 
@@ -25,14 +32,14 @@ class EventPort(ABC):
         ...
 
     @abstractmethod
-    def search(self, query: str, limit: int = 5, offset: int = 0) -> tuple[Event]:
-        """Получить события по запросу"""
+    def bulk_delete(self, _filter: EventFilter) -> bool:
+        """Удалить события по фильтру"""
         ...
 
 
 class EventCategoryPort(ABC):
     @abstractmethod
-    def create(self, category: EventCategory) -> UUID:
+    def create(self, category: EventCategory) -> bool:
         """Создать новую категорию"""
         ...
 
@@ -42,13 +49,13 @@ class EventCategoryPort(ABC):
         ...
 
     @abstractmethod
-    def get_events_by_category(self, _id: UUID) -> list[Event]:
+    def get_events(self, _id: UUID) -> tuple[Event]:
         """Получить все события этой категории"""
         ...
 
     @abstractmethod
-    def update(self, _id: UUID, category: EventCategory) -> bool:
-        """Обновить категорию (в контексте модели это, по сути, переименование)"""
+    def update(self, category: EventCategory) -> bool:
+        """Обновить категорию"""
         ...
 
     @abstractmethod
@@ -59,7 +66,7 @@ class EventCategoryPort(ABC):
 
 class SubscriptionPort(ABC):
     @abstractmethod
-    def create(self, subscription: Subscription) -> UUID:
+    def create(self, subscription: Subscription) -> bool:
         """Создать подписку пользователя"""
         ...
 
@@ -69,11 +76,16 @@ class SubscriptionPort(ABC):
         ...
 
     @abstractmethod
-    def get_by_user(self, user_id: int) -> list[Subscription]:
-        """Найти подписки пользователя"""
+    def get_by_user(self, user_id: int) -> tuple[EventCategory]:
+        """Найти все категории, на которые подписан пользователь"""
+        ...
+
+    @abstractmethod
+    def get_by_category(self, category_id: int) -> tuple[User]:
+        """Найти пользователей, подписанных на данную категорию"""
         ...
 
     @abstractmethod
     def delete(self, _id: UUID) -> bool:
-        """Удалить одписку по ID"""
+        """Удалить подписку по ID"""
         ...
